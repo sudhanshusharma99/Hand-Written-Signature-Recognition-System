@@ -122,9 +122,6 @@ if st.button("Validate Signarure"):
   resultv=import_and_predict_v(image)
   st.success('Model has predicted the Signarure is   {}'.format(resultv))
 
-if st.button("About"):
-  st.header(" Sudhanshu Sharma")
-  st.subheader("Student, Department of Computer Engineering")
   
 html_temp = """
    <div class="" style="background-color:orange;" >
