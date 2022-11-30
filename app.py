@@ -20,13 +20,13 @@ from scipy import stats
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 from keras.models import load_model
-modeln = load_model('/content/drive/My Drive/INT/NAMES/name.h5')
+modeln = load_model('name.h5')
 NAME_CLASSES = ['Abhay','Amitabh','Hemang','Jinesh','Kalpana','Manish','Neeta','Niket','Sudhanshu','Tanmay']
 
 
 # Loading saved model from Drive.
 from keras.models import load_model
-modelv = load_model('/content/drive/My Drive/INT/VERIFY/verify.h5')
+modelv = load_model('verify.h5')
 VERIFY_CLASSES = ['Forged', 'Real']
 
 
