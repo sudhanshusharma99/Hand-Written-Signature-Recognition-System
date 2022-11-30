@@ -1,10 +1,11 @@
 Flask
+numpy
+opencv-python-headless
 gunicorn
 itsdangerous
 Jinja2
 MarkupSafe
 Werkzeug
-
 scipy
 scikit-learn
 matplotlib
@@ -13,8 +14,6 @@ flasgger
 streamlit
 tensorflow
 keras
-numpy
-opencv-python-headless
 flask
 Jinja2==3.0.1
 joblib==1.0.1
@@ -39,5 +38,4 @@ yarg==0.1.9
 keras
 tensorflow-cpu
 
-scikit-image[data] == 0.19
-opencv-python
+scikit-image == 0.19
