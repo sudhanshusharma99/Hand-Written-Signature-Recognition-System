@@ -41,4 +41,3 @@ tensorflow-cpu
 
 scikit-image[data] == 0.19
 opencv-python
-PIL
