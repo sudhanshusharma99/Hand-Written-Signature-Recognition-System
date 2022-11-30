@@ -4,7 +4,7 @@ itsdangerous
 Jinja2
 MarkupSafe
 Werkzeug
-numpy
+
 scipy
 scikit-learn
 matplotlib
@@ -13,6 +13,7 @@ flasgger
 streamlit
 tensorflow
 keras
+numpy
 opencv-python-headless
 flask
 Jinja2==3.0.1
@@ -40,4 +41,4 @@ tensorflow-cpu
 
 scikit-image[data] == 0.19
 opencv-python
-cv2
+PIL
