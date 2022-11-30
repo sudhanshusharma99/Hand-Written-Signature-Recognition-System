@@ -3,7 +3,7 @@ import streamlit as st
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-from google.colab.patches import cv2_imshow
+# from google.colab.patches import cv2_imshow
 from PIL import Image
 import pickle
 import numpy as np
