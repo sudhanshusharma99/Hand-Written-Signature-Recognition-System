@@ -29,14 +29,9 @@ from keras.models import load_model
 modelv = load_model('verify.h5')
 VERIFY_CLASSES = ['Forged', 'Real']
 
-st.markdown(html_temp,unsafe_allow_html=True)
-
 html_temp = """
-   <div class="" style="background-color:white;" >
-   <div class="clearfix">           
-   </div>
-   </div>
    """
+st.markdown(html_temp,unsafe_allow_html=True)
 st.title("""
         Signature Recognition, Varification & Validation
          """
