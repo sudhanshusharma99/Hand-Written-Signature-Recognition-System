@@ -30,7 +30,9 @@ modelv = load_model('verify.h5')
 VERIFY_CLASSES = ['Forged', 'Real']
 
 st.markdown(html_temp,unsafe_allow_html=True)
-  
+
+html_temp = """
+"""
 st.title("""
         Signature Recognition, Varification & Validation
          """
