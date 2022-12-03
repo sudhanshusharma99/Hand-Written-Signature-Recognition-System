@@ -31,11 +31,17 @@ VERIFY_CLASSES = ['Forged', 'Real']
 
 
 html_temp = """
+   <style>
+   body {
+   font-family: 'Roboto', sans-serif;
+  background-color: #1E2128;
+  color: #D8D8D8;
+  }
+  </style>
    <div class="" style="background-color:blue;" >
    <div class="clearfix">           
    <div class="col-md-12">
-   <center><p style="font-size:40px;color:white;margin-top:10px;">Final Year Project</p></center> 
-   <center><p style="font-size:30px;color:white;margin-top:10px;">Signarure Varification & Validation</p></center> 
+   <center><p style="text-align: center; font-size:30px;color:white;margin-top:10px;">Signarure Varification & Validation</p></center> 
    </div>
    </div>
    </div>
@@ -122,14 +128,4 @@ if st.button("Validate Signarure"):
   resultv=import_and_predict_v(image)
   st.success('Model has predicted the Signarure is   {}'.format(resultv))
 
-  
-html_temp = """
-   <div class="" style="background-color:orange;" >
-   <div class="clearfix">           
-   <div class="col-md-12">
-   <center><p style="font-size:20px;color:white;margin-top:10px;">Machine Learning & Deep Learning Model</p></center> 
-   </div>
-   </div>
-   </div>
-   """
 st.markdown(html_temp,unsafe_allow_html=True)
