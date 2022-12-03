@@ -32,7 +32,11 @@ VERIFY_CLASSES = ['Forged', 'Real']
 st.markdown(html_temp,unsafe_allow_html=True)
 
 html_temp = """
-"""
+   <div class="" style="background-color:white;" >
+   <div class="clearfix">           
+   </div>
+   </div>
+   """
 st.title("""
         Signature Recognition, Varification & Validation
          """
