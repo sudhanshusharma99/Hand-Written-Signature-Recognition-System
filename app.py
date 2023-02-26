@@ -36,7 +36,7 @@ st.title("""
         Signature Recognition, Varification & Validation
          """
          )
-file= st.file_uploader("Please upload signature here ", type=("jpeg"))
+file= st.file_uploader("Please upload signature here ", type=("jpeg","jpg","png"))
 
 import cv2
 from  PIL import Image, ImageOps
