@@ -21,8 +21,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 
 from keras.models import load_model
 modeln = load_model('name.h5')
-NAME_CLASSES = ['Abhay','Amitabh','Hemang','Jinesh','Kalpana','Manish','Neeta','Niket','Sudhanshu','Tanmay']
-
+NAME_CLASSES = ['Aaditya','Abhay','Ajay','Aman','Amitabh','Anuj','Arvind','Asif','Bala','Bhavya','Chinmay','David','Dinesh','Durga','Gauri','Gautam','Hemang','Jinesh','Junaid','Kalpana','Kapil','Karan','Kushi','Lalit','Love','M. Adnan','Mahipal','Manish','Meera','Neeta','Niket','Nirmala','Parmod','Pawan','Rahul','Raju','Ram','Ravi','Riya','Rudra','Shiv','Shivam','Sudhanshu','Sunil','Sunita','Tanmay','Tilak','Utsav','Vaibhav','Yashwant']
 
 # Loading saved model from Drive.
 from keras.models import load_model
