@@ -37,6 +37,6 @@ urllib3==1.26.4
 Werkzeug==2.0.1
 yarg==0.1.9
 keras==2.11.0
-tensorflow==2.11.0-cpu
+tensorflow-cpu==2.11.0
 
 scikit-image==0.19.3
