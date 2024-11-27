@@ -14,7 +14,7 @@ pandas==1.5.3
 flasgger
 streamlit==1.15.0
 
-tensorflow==2.11.0
+tensorflow==2.14.0
 keras==2.11.0
 flask
 Jinja2==3.0.1
@@ -37,6 +37,7 @@ urllib3==1.26.4
 Werkzeug==2.0.1
 yarg==0.1.9
 keras==2.11.0
-tensorflow-cpu==2.11.0
+tensorflow-cpu==2.14.0
+setuptools==65.5.0
 
 scikit-image==0.19.3
