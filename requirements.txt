@@ -1,6 +1,7 @@
 Flask
-numpy
-opencv-python-headless
+numpy==1.23.5
+opencv-python-headless==4.6.0.66
+
 gunicorn
 itsdangerous
 Jinja2
@@ -9,11 +10,12 @@ Werkzeug
 scipy
 scikit-learn
 matplotlib
-pandas
+pandas==1.5.3
 flasgger
-streamlit
-tensorflow
-keras
+streamlit==1.15.0
+
+tensorflow==2.11.0
+keras==2.11.0
 flask
 Jinja2==3.0.1
 joblib==1.0.1
@@ -21,9 +23,9 @@ gunicorn==20.0.2
 kiwisolver==1.3.1
 MarkupSafe==2.0.1
 matplotlib==3.4.2
-pandas
-numpy
-Pillow==8.2.0
+pandas==1.5.3
+numpy==1.23.5
+Pillow==9.4.0
 pipreqs==0.4.10
 pyparsing==2.4.7
 python-dateutil==2.8.1
@@ -34,7 +36,7 @@ threadpoolctl==2.1.0
 urllib3==1.26.4
 Werkzeug==2.0.1
 yarg==0.1.9
-keras
-tensorflow-cpu
+keras==2.11.0
+tensorflow==2.11.0-cpu
 
-scikit-image == 0.19
+scikit-image==0.19.3
