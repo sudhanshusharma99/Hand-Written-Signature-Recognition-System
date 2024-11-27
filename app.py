@@ -10,10 +10,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import tensorflow as tf
-from keras.preprocessing import image
+from tensorflow.keras.preprocessing import image
 import os
 from werkzeug.utils import secure_filename
-from keras.preprocessing import image
+from tensorflow.keras.preprocessing import image
 from keras.applications.vgg16 import preprocess_input
 import scipy
 from scipy import stats
