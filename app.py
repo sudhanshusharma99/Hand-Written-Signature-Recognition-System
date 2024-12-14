@@ -1,101 +1,58 @@
-pip install --upgrade pip
-
-
 import streamlit as st
 import numpy as np
-from PIL import Image, ImageOps
-import cv2
+from PIL import Image
+import tensorflow as tf
 from tensorflow.keras.models import load_model
-from tensorflow.keras.applications.vgg16 import preprocess_input
+import io
 
-# Load models
-modeln = load_model('name.h5')
-modelv = load_model('verify.h5')
+# Load the trained model (adjust the path as needed)
+model = load_model('signature_model.h5')
 
-NAME_CLASSES = [
-    'Aaditya', 'Abhay', 'Ajay', 'Aman', 'Amitabh', 'Anuj', 'Arvind', 'Asif',
-    'Bala', 'Bhavya', 'Chinmay', 'David', 'Dinesh', 'Durga', 'Gauri', 'Gautam',
-    'Hemang', 'Jinesh', 'Junaid', 'Kalpana', 'Kapil', 'Karan', 'Kushi', 'Lalit',
-    'Love', 'M. Adnan', 'Mahipal', 'Manish', 'Meera', 'Neeta', 'Niket',
-    'Nirmala', 'Parmod', 'Pawan', 'Rahul', 'Raju', 'Ram', 'Ravi', 'Riya',
-    'Rudra', 'Shiv', 'Shivam', 'Sudhanshu', 'Sunil', 'Sunita', 'Tanmay',
-    'Tilak', 'Utsav', 'Vaibhav', 'Yashwant'
-]
-VERIFY_CLASSES = ['Forged', 'Real']
+# Title of the app
+st.title('Handwritten Signature Recognition System')
 
-# Streamlit app title
-st.title("Signature Recognition, Verification, and Validation")
+# Description
+st.markdown("""
+    This application allows you to upload a signature image and recognize it using a pre-trained model.
+    Simply upload an image of a handwritten signature, and our model will classify it.
+""")
 
-# File uploader
-file = st.file_uploader("Please upload a signature image", type=["jpeg", "jpg", "png"])
+# Function to process the uploaded image
+def process_image(image):
+    image = image.convert('L')  # Convert to grayscale
+    image = image.resize((200, 100))  # Resize to match the model's expected input size
+    image_array = np.array(image)  # Convert image to numpy array
+    image_array = image_array / 255.0  # Normalize the image
+    image_array = np.expand_dims(image_array, axis=-1)  # Add channel dimension
+    image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
+    return image_array
 
+# File uploader widget for signature image
+uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "png", "jpeg"])
 
-def preprocess_image(img):
-    """
-    Preprocess the image for model prediction.
-    """
-    size = (224, 224)
-    img = ImageOps.fit(img, size, Image.Resampling.LANCZOS)
-    img_array = np.asarray(img)
-    img_array = preprocess_input(img_array)  # Normalize for VGG16
-    return np.expand_dims(img_array, axis=0)
-
-
-def extract_signature(image):
-    """
-    Extract signature region from the uploaded image using color segmentation and contours.
-    """
-    # Convert to HSV color space
-    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    lower = np.array([90, 38, 0])  # Adjust for the target signature color
-    upper = np.array([300, 255, 255])
-    mask = cv2.inRange(hsv, lower, upper)
-
-    # Apply the mask and find contours
-    result = cv2.bitwise_and(image, image, mask=mask)
-    result[mask == 0] = (255, 255, 255)  # Set non-signature region to white
-
-    # Find contours
-    cnts = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
-
-    if len(cnts) > 0:
-        cnts = np.concatenate(cnts)
-        x, y, w, h = cv2.boundingRect(cnts)
-        ROI = result[y:y + h, x:x + w]
-        resized = cv2.resize(ROI, (224, 224))
-        return resized
-    else:
-        return None
-
-
-if file:
-    # Open the uploaded file
-    image = Image.open(file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
-
-    # Convert to OpenCV format
-    image_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-
-    # Extract signature
-    extracted_signature = extract_signature(image_cv)
-
-    if extracted_signature is not None:
-        st.image(extracted_signature, caption="Extracted Signature", use_column_width=True)
-
-        # Preprocess the extracted signature for model prediction
-        processed_signature = preprocess_image(Image.fromarray(extracted_signature))
-
-        if st.button("Reveal Name"):
-            predictions = modeln.predict(processed_signature)
-            predicted_name = NAME_CLASSES[np.argmax(predictions)]
-            st.success(f"Model predicts the signature belongs to **{predicted_name}**.")
-
-        if st.button("Validate Signature"):
-            predictions = modelv.predict(processed_signature)
-            validation_result = VERIFY_CLASSES[np.argmax(predictions)]
-            st.success(f"Model validates the signature as **{validation_result}**.")
-    else:
-        st.error("No signature detected in the image. Please upload a clearer image.")
+if uploaded_file is not None:
+    # Display uploaded image
+    st.image(uploaded_file, caption="Uploaded Signature", use_column_width=True)
+    st.write("")
+    
+    # Process the image
+    image = Image.open(uploaded_file)
+    processed_image = process_image(image)
+    
+    # Prediction
+    prediction = model.predict(processed_image)
+    
+    # Display result
+    st.write(f"Prediction: {np.argmax(prediction)}")
+    st.write(f"Confidence: {np.max(prediction) * 100:.2f}%")
+    
+    # Display more details about prediction
+    st.markdown("### Prediction Details")
+    st.write("This is the result of signature recognition. The model is trained to identify different handwritten signatures.")
 else:
-    st.info("Please upload an image file.")
+    st.write("Upload a signature image to get started.")
+
+# Footer
+st.markdown("""
+    **Handwritten Signature Recognition System** built with Streamlit and TensorFlow.
+    """)
