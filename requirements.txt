@@ -41,3 +41,12 @@ tensorflow-cpu==2.14.0
 setuptools==65.5.0
 
 scikit-image==0.19.3
+
+
+
+
+
+streamlit==1.17.0
+tensorflow==2.12.0
+Pillow==8.4.0
+numpy==1.21.2
